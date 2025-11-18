@@ -1,0 +1,113 @@
+<wsdl:definitions xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:plink="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:wsdlsoap11="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdlsoap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap11enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap11env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap12env="http://www.w3.org/2003/05/soap-envelope" xmlns:soap12enc="http://www.w3.org/2003/05/soap-encoding" xmlns:wsa="http://schemas.xmlsoap.org/ws/2003/03/addressing" xmlns:xop="http://www.w3.org/2004/08/xop/include" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="spyne.bank.soap" targetNamespace="spyne.bank.soap" name="Application">
+<wsdl:types>
+<xs:schema targetNamespace="spyne.bank.soap" elementFormDefault="qualified">
+<xs:complexType name="deposit">
+<xs:sequence>
+<xs:element name="account_id" type="xs:integer" minOccurs="0" nillable="true"/>
+<xs:element name="amount" type="xs:float" minOccurs="0" nillable="true"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="depositResponse">
+<xs:sequence>
+<xs:element name="depositResult" type="xs:string" minOccurs="0" nillable="true"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="transfer">
+<xs:sequence>
+<xs:element name="from_account_id" type="xs:integer" minOccurs="0" nillable="true"/>
+<xs:element name="to_account_id" type="xs:integer" minOccurs="0" nillable="true"/>
+<xs:element name="amount" type="xs:float" minOccurs="0" nillable="true"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="transferResponse">
+<xs:sequence>
+<xs:element name="transferResult" type="xs:string" minOccurs="0" nillable="true"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="withdraw">
+<xs:sequence>
+<xs:element name="account_id" type="xs:integer" minOccurs="0" nillable="true"/>
+<xs:element name="amount" type="xs:float" minOccurs="0" nillable="true"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="withdrawResponse">
+<xs:sequence>
+<xs:element name="withdrawResult" type="xs:string" minOccurs="0" nillable="true"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="deposit" type="tns:deposit"/>
+<xs:element name="depositResponse" type="tns:depositResponse"/>
+<xs:element name="transfer" type="tns:transfer"/>
+<xs:element name="transferResponse" type="tns:transferResponse"/>
+<xs:element name="withdraw" type="tns:withdraw"/>
+<xs:element name="withdrawResponse" type="tns:withdrawResponse"/>
+</xs:schema>
+</wsdl:types>
+<wsdl:message name="deposit">
+<wsdl:part name="deposit" element="tns:deposit"/>
+</wsdl:message>
+<wsdl:message name="depositResponse">
+<wsdl:part name="depositResponse" element="tns:depositResponse"/>
+</wsdl:message>
+<wsdl:message name="withdraw">
+<wsdl:part name="withdraw" element="tns:withdraw"/>
+</wsdl:message>
+<wsdl:message name="withdrawResponse">
+<wsdl:part name="withdrawResponse" element="tns:withdrawResponse"/>
+</wsdl:message>
+<wsdl:message name="transfer">
+<wsdl:part name="transfer" element="tns:transfer"/>
+</wsdl:message>
+<wsdl:message name="transferResponse">
+<wsdl:part name="transferResponse" element="tns:transferResponse"/>
+</wsdl:message>
+<wsdl:service name="BankService">
+<wsdl:port name="Application" binding="tns:Application">
+<wsdlsoap11:address location="http://127.0.0.1:5000/soap"/>
+</wsdl:port>
+</wsdl:service>
+<wsdl:portType name="Application">
+<wsdl:operation name="deposit" parameterOrder="deposit">
+<wsdl:input name="deposit" message="tns:deposit"/>
+<wsdl:output name="depositResponse" message="tns:depositResponse"/>
+</wsdl:operation>
+<wsdl:operation name="withdraw" parameterOrder="withdraw">
+<wsdl:input name="withdraw" message="tns:withdraw"/>
+<wsdl:output name="withdrawResponse" message="tns:withdrawResponse"/>
+</wsdl:operation>
+<wsdl:operation name="transfer" parameterOrder="transfer">
+<wsdl:input name="transfer" message="tns:transfer"/>
+<wsdl:output name="transferResponse" message="tns:transferResponse"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="Application" type="tns:Application">
+<wsdlsoap11:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="deposit">
+<wsdlsoap11:operation soapAction="deposit" style="document"/>
+<wsdl:input name="deposit">
+<wsdlsoap11:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="depositResponse">
+<wsdlsoap11:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="withdraw">
+<wsdlsoap11:operation soapAction="withdraw" style="document"/>
+<wsdl:input name="withdraw">
+<wsdlsoap11:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="withdrawResponse">
+<wsdlsoap11:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="transfer">
+<wsdlsoap11:operation soapAction="transfer" style="document"/>
+<wsdl:input name="transfer">
+<wsdlsoap11:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="transferResponse">
+<wsdlsoap11:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+</wsdl:definitions>
