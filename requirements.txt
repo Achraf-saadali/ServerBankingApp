@@ -3,5 +3,4 @@ spyne==2.14.0
 flask-cors==3.0.10
 gunicorn==21.2.0
 lxml==5.2.1
-pymysql==1.1.0
-flask_mysqldb ==2.0.0
+flask_mysqldb==2.0.0
