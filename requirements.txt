@@ -2,3 +2,4 @@ Flask==2.3.2
 spyne==2.14.0
 flask-cors
 gunicorn==21.2.0
+lxml==5.2.1
