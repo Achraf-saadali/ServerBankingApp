@@ -19,8 +19,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the project files
 COPY . .
 
-# Expose port (not strictly necessary, but good practice)
+# Expose port (good practice)
 EXPOSE 5000
 
-# Start Gunicorn using Railway’s dynamic port
-CMD ["gunicorn", "-b", "0.0.0.0:$PORT", "ServerPart:app"]
+# Start Gunicorn using Railway’s dynamic port (shell form for $PORT expansion)
+CMD gunicorn -b 0.0.0.0:$PORT ServerPart:app
