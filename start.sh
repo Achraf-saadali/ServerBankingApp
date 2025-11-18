@@ -1,2 +1,2 @@
 #!/bin/bash
-gunicorn app:app --bind 0.0.0.0:$PORT
+gunicorn ServerPart:app --bind 0.0.0.0:$PORT
